@@ -1,12 +1,13 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { signin } from '../../actions';
 
 function Intro(props) {
 
   return (
     <div className='intro-container'>
-      <button className="intro-button">
-        Search
+      <button onClick = {() => props.signin()} className="intro-button">
+        Hello there
       </button>
     </div>
   )
@@ -14,4 +15,4 @@ function Intro(props) {
 
 
 
-export default Intro
+export default connect(null, {signin})(Intro);

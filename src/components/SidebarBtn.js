@@ -4,57 +4,60 @@ import {confirmedSelection, deathSelection, recoveredSelection} from '../actions
 
 function SidebarBtn(props) {
 
-
   var recovered = 0;
   var death = 0;
   var total = 0;
 
   (function() {
     return props.covid.map(item => {
-      total += item.TotalConfirmed
+      return total += item.TotalConfirmed
     })
   })();
 
   (function() {
     return props.covid.map(item => {
-      recovered += item.TotalRecovered
+      return recovered += item.TotalRecovered
     })
   })();
 
   (function() {
     return props.covid.map(item => {
-      death += item.TotalDeaths
+      return death += item.TotalDeaths
     })
   })();
-
 
   return (
-    <div className="sidebtn-container">
+    <div className='sidebtn-container' >
       <div onClick={() => props.confirmedSelection()} className="sidebtn-container_box">
-        <div className="sidebtn-container_box__first">
+        <div className={`sidebtn-container_box__first ${props.section.style === 1 ? 'active' : ''}`}>
           Confirmed
-          <span className="sidebtn-container_box__first-sub">{total}</span>
+          <span className="sidebtn-container_box__first-sub">{numberWithCommas(total)}</span>
         </div>
       </div>
       <div onClick={() => props.deathSelection()} className="sidebtn-container_box">
-        <div className="sidebtn-container_box__second">
+        <div className={`sidebtn-container_box__second ${props.section.style === 2 ? 'active' : ''}`}>
           Deaths
-          <span className="sidebtn-container_box__first-sub">{death}</span>
+          <span className="sidebtn-container_box__first-sub">{numberWithCommas(death)}</span>
         </div>
       </div>
       <div onClick={() => props.recoveredSelection()} className="sidebtn-container_box">
-        <div className="sidebtn-container_box__third">
+        <div className={`sidebtn-container_box__third ${props.section.style === 3 ? 'active' : ''}`}>
           Recovered 
-          <span className="sidebtn-container_box__first-sub">{recovered}</span>
+          <span className="sidebtn-container_box__first-sub">{numberWithCommas(recovered)}</span>
         </div>
       </div>
-    </div>
+    </div> 
   )
+}
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const mapStateToProps = (state) => {
   return {
-    covid: state.covid
+    covid: state.covid,
+    section: state.section
   }
 }
 

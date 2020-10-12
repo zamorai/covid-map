@@ -17,6 +17,12 @@ export const signin = () => {
   }
 }
 
+export const signout = () => {
+  return {
+    type: 'SIGN_OUT'
+  }
+}
+
 export const confirmedSelection = () => {
   return {
     type: "CONFIRMED"

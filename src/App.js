@@ -1,21 +1,52 @@
-import React from 'react';
-import Intro from './components/layout/Intro';
-import Header from './components/layout/Header';
-import Sidebar from './components/Sidebar';
-import Map from './components/Map';
+import React, { lazy, Suspense } from 'react';
+import { connect } from 'react-redux';
+import Loader from './components/layout/Loader';
 
-export default function App() {
+const Header = lazy(() => import ('./components/layout/Header'));
+const Intro = lazy(() => import ('./components/layout/Intro'));
+const Sidebar = lazy(() => import ('./components/Sidebar'));
+const CovidMap = lazy(() => import ('./components/CovidMap'));
+
+function App(props) {
+
+  const renderItems = () => {
+    if (props.auth.signedIn) {
+      return (
+        <Suspense fallback={<Loader/>} >
+          <div className="app-container">
+            <div className='header-container'>
+              <Header/>
+            </div>
+            <div className="sidebar-container">
+              <Sidebar />
+            </div>
+            <div className="map-container">
+            <CovidMap />
+            </div>
+          </div>
+        </Suspense>
+      )
+    } else {
+      return (
+        <Suspense fallback={<Loader/>} >
+          <Intro />
+        </Suspense>
+      )
+    }
+  }
+
   return (
-    <div className="app-container">
-      <div className='header-container'>
-        <Header/>
-      </div>
-      <div className="sidebar-container">
-        <Sidebar />
-      </div>
-      <div className="map-container">
-        <Map />
-      </div>
-    </div>
+    <React.Fragment>
+      {renderItems()}
+    </React.Fragment>
   )
 }
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(App);
+
