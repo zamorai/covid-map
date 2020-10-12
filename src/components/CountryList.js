@@ -8,7 +8,9 @@ import Country from './Country';
 function CountryList(props) {
 
   useEffect(() => {
-    props.countries(); 
+    if(props.covid.length === 0) {
+      props.countries(); 
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const totalSorted = props.covid.sort(compare).reverse();
