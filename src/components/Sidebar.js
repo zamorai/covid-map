@@ -9,10 +9,13 @@ function Sidebar(props) {
 
 
   return (
-    <div className="sidebar-title">
-      <SidebarBtn />
-      <CountryList />
+    <div className="sidebar-container">
+      <div className="sidebar-title">
+        <SidebarBtn />
+        <CountryList />
+      </div>
     </div>
+    
   )
 }
 

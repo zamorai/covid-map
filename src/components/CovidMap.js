@@ -304,7 +304,7 @@ function CovidMap(props) {
   const coords = { lat: 40.7, lng: 73.9 };
 
   return (
-    <div>
+    <div className="map-container">
       <Map
       initialCenter={coords}
       google={props.google}

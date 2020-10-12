@@ -14,15 +14,9 @@ function App(props) {
       return (
         <Suspense fallback={<Loader/>} >
           <div className="app-container">
-            <div className='header-container'>
               <Header/>
-            </div>
-            <div className="sidebar-container">
               <Sidebar />
-            </div>
-            <div className="map-container">
-            <CovidMap />
-            </div>
+             <CovidMap />
           </div>
         </Suspense>
       )
