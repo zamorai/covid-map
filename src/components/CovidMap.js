@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Map, Circle, GoogleApiWrapper} from 'google-maps-react';
-import axios from 'axios';
+import data from '../world.json';
 
 const containerStyle ={
   width: '66.66%',
@@ -281,17 +281,26 @@ function CovidMap(props) {
     })
   }
 
-  useEffect(() => {
-    const response = async () => {
-      const total = await axios.get('https://api.covid19api.com/live/country/south-africa');
-      console.log(total);
-    }
-    response();
-
-  }, [])
+ const renderCircle = data.map((country, index) => {
+     return (
+      <Circle
+      key={country.numeric}
+      radius={Math.random()*1000000}
+      center={{lat: country.latitude, lng: country.longitude}}
+      onMouseover={() => console.log('mouseover')}
+      onClick={() => console.log('click')}
+      onMouseout={() => console.log('mouseout')}
+      strokeColor='red'
+      strokeOpacity={0.5}
+      strokeWeight={1}
+      fillColor='#FF0000'
+      fillOpacity={0.2}
+    />
+  )
+})
+ 
 
   const coords = { lat: -30.56, lng: 22.94 };
-
 
   return (
     <div>
@@ -299,25 +308,15 @@ function CovidMap(props) {
       initialCenter={coords}
       google={props.google}
       containerStyle={containerStyle}
-      zoom={6}
+      zoom={4}
       onReady={(mapProps, map) => _mapLoaded(mapProps, map)}
     >
-      <Circle
-        radius={120000}
-        center={coords}
-        onMouseover={() => console.log('mouseover')}
-        onClick={() => console.log('click')}
-        onMouseout={() => console.log('mouseout')}
-        strokeColor='red'
-        strokeOpacity={0.5}
-        strokeWeight={1}
-        fillColor='#FF0000'
-        fillOpacity={0.2}
-      />
+     {renderCircle}
     </Map>
     </div>
   )
 }
+
  
 export default GoogleApiWrapper({
   apiKey: ('AIzaSyACQ4xFUMYA1Jib9sthhPjV3WB73BShI80')
