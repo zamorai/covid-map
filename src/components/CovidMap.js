@@ -1,6 +1,7 @@
 import React from 'react';
 import {Map, Circle, GoogleApiWrapper} from 'google-maps-react';
 import data from '../world.json';
+import { KEY } from '../map';
 
 const containerStyle ={
   width: '66.66%',
@@ -319,5 +320,5 @@ function CovidMap(props) {
 
  
 export default GoogleApiWrapper({
-  apiKey: ('AIzaSyACQ4xFUMYA1Jib9sthhPjV3WB73BShI80')
+  apiKey: (KEY) 
 })(CovidMap)
