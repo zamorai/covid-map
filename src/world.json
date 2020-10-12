@@ -47,15 +47,7 @@
       "numeric" : 660,
       "latitude" : 18.25,
       "longitude" : -63.1667
-    },
-{
-      "country" : "Antarctica",
-      "alpha2" : "AQ",
-      "alpha3" : "ATA",
-      "numeric" : 10,
-      "latitude" : -90,
-      "longitude" : 0
-    },
+    }, 
 {
       "country" : "Antigua and Barbuda",
       "alpha2" : "AG",

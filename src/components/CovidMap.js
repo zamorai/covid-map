@@ -282,7 +282,7 @@ function CovidMap(props) {
     })
   }
 
- const renderCircle = data.map((country, index) => {
+ const renderCircle = data.map(country => {
      return (
       <Circle
       key={country.numeric}
@@ -301,7 +301,7 @@ function CovidMap(props) {
 })
  
 
-  const coords = { lat: -30.56, lng: 22.94 };
+  const coords = { lat: 40.7, lng: 73.9 };
 
   return (
     <div>

@@ -8,12 +8,15 @@ function Intro(props) {
   const[counter, setCounter] = useState(0);
 
   useEffect(()=>{
+
     const response = async () => {
-      const info = await axios.get('https://api.covid19api.com/world/total');
-      setCovidDeaths(info.data.TotalDeaths);
-      setCounter(info.data.TotalDeaths - 20)
+        const info = await axios.get('https://api.covid19api.com/world/total');
+        setCovidDeaths(info.data.TotalDeaths);
+        setCounter(info.data.TotalDeaths - 20)
+
     }
     response();
+
   },[])
 
   useEffect(() => {
