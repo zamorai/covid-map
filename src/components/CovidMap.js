@@ -288,9 +288,8 @@ function CovidMap(props) {
       key={country.numeric}
       radius={Math.random()*1000000}
       center={{lat: country.latitude, lng: country.longitude}}
-      onMouseover={() => console.log('mouseover')}
-      onClick={() => console.log('click')}
-      onMouseout={() => console.log('mouseout')}
+      onMouseover={() => console.log(country.country)}
+      onClick={() => console.log(country.numeric)}
       strokeColor='red'
       strokeOpacity={0.5}
       strokeWeight={1}

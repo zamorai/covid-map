@@ -10,7 +10,7 @@ export default function Country(props) {
         <ReactCountryFlag className="country-container__flag-item" countryCode={props.code} svg />
       </div>
       <span className="country-container__name">
-        {props.name}
+        {props.name.split('-').join(' ')}
       </span>
       <span className="country-container__stat">
         {numberWithCommas(props.stat)}

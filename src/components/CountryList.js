@@ -19,7 +19,7 @@ function CountryList(props) {
 
   const totalSorted = props.covid.sort(compare).reverse();
   const totalFiltered = totalSorted.filter(items => {
-    return items.Slug.toLowerCase().includes(props.search.toLowerCase());
+    return items.Slug.split('-').join(' ').toLowerCase().includes(props.search.toLowerCase());
   });
 
 
