@@ -1,5 +1,5 @@
 const initialState = {
-  signedIn: false
+  signedIn: true
 }
 
 export default (state = initialState, action) => {

@@ -23,7 +23,7 @@ function Intro(props) {
     if(counter !== covidDeaths) {
       setTimeout(() => {
         setCounter(counter + 1)
-      }, 300);
+      }, 100);
     }
   },[counter]) // eslint-disable-line react-hooks/exhaustive-deps
   

@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { countries } from '../actions';
 
 
+
 import Country from './Country';
 
 function CountryList(props) {
+
+
 
   useEffect(() => {
     if(props.covid.length === 0) {
@@ -13,10 +16,16 @@ function CountryList(props) {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+
   const totalSorted = props.covid.sort(compare).reverse();
+  const totalFiltered = totalSorted.filter(items => {
+    return items.Slug.toLowerCase().includes(props.search.toLowerCase());
+  });
+
+
 
   const renderedItems = () => {
-      return totalSorted.map(country => {
+      return totalFiltered.map(country => {
         return (
           <div key={country.CountryCode}>
             <Country code={country.CountryCode} name={country.Slug} stat={props.section.section === 'confirmed' ? country.TotalConfirmed : props.section.section === 'death' ? country.TotalDeaths : country.TotalRecovered} /> 
@@ -40,6 +49,18 @@ function compare(a, b) {
   if (a.TotalConfirmed > b.TotalConfirmed) {
     return 1;
   }
+  if (a.TotalDeaths < b.TotalDeaths) {
+    return -1;
+  }
+  if (a.TotalDeaths > b.TotalDeaths) {
+    return 1;
+  }
+  if (a.TotalRecovered < b.TotalRecovered) {
+    return -1;
+  }
+  if (a.TotalRecovered > b.TotalRecovered) {
+    return 1;
+  }
   return 0;
 }
 
@@ -48,7 +69,8 @@ function compare(a, b) {
 const mapStateToProps = (state) => {
   return {
     covid: state.covid,
-    section: state.section
+    section: state.section,
+    search: state.search
   }
 }
 

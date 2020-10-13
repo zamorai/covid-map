@@ -38,3 +38,10 @@ export const recoveredSelection = () => {
     type: "RECOVERED"
   }
 }
+
+export const search = (term) => {
+  return {
+    type: 'SEARCH',
+    payload: term
+  }
+}
