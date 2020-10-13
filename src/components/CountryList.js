@@ -49,18 +49,6 @@ function compare(a, b) {
   if (a.TotalConfirmed > b.TotalConfirmed) {
     return 1;
   }
-  if (a.TotalDeaths < b.TotalDeaths) {
-    return -1;
-  }
-  if (a.TotalDeaths > b.TotalDeaths) {
-    return 1;
-  }
-  if (a.TotalRecovered < b.TotalRecovered) {
-    return -1;
-  }
-  if (a.TotalRecovered > b.TotalRecovered) {
-    return 1;
-  }
   return 0;
 }
 
